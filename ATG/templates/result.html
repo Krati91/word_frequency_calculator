@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if db_data %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+              <h3 class="mt-4">This url has already been processed</h3>
+            </div>
+        </div>
+    </div>        
+    {% endif %}
+    <table class="table">
+        <tr>
+            <th>Word</th>
+            <th>Frequency</th>
+        </tr>
+        {% if frequency %}
+            {%for item in frequency %}
+            <tr>
+                <td>{{ item.0 }}</td>
+                <td>{{ item.1 }}</td>
+            </tr>
+            {% endfor %}
+        {% elif db_data %}
+            {% for item in db_data %}
+                <tr>
+                    <td>{{ item.0 }}</td>
+                    <td>{{ item.1 }}</td>
+                </tr>
+            {% endfor %}    
+        {% endif %}      
+    </table>
+{% endblock %}
